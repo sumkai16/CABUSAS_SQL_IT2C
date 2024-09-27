@@ -1,0 +1,47 @@
+CREATE TABLE Students(
+
+	s_id INT AUTO_INCREMENT PRIMARY KEY,
+    s_fname VARCHAR(100)NOT NULL,
+    s_lname VARCHAR(100)NOT NULL,
+    program VARCHAR(100)NOT NULL,
+    yr TEXT,
+    section TEXT
+);
+CREATE TABLE Teachers(
+
+	t_id INT AUTO_INCREMENT PRIMARY KEY,
+    t_fname VARCHAR(100) NOT NULL,
+    t_lname VARCHAR(100) NOT NULL,
+    department VARCHAR(100)NOT NULL,
+    course TEXT
+    
+);
+CREATE TABLE Grades(
+
+	student_id INT AUTO_INCREMENT,
+    course TEXT,
+    prelim DECIMAL (10,1) NOT NULL,
+    midterm DECIMAL (10,1) NOT NULL,
+    prefinal DECIMAL (10,1) NOT NULL,
+    finals DECIMAL (10,1) NOT NULL,
+    
+    FOREIGN KEY (student_id) REFERENCES Students(s_id)
+);
+
+INSERT INTO Students( s_fname, s_lname, program, yr,section)
+	VALUES
+		( 'Axcee', 'Cabusas', 'BSIT', '2nd year','2C'),
+        ( 'Frank', 'Omaque', 'BSBA', '1st year','1B');
+INSERT INTO Teachers(t_fname,t_lname,department,course)
+	VALUES
+		( 'Mike', 'Bustamante', 'BSIT', 'PF201'),
+        ( 'Kirby', 'Tabucal', 'BEED', 'PE 3');
+INSERT INTO Grades(course,prelim,midterm,prefinal,finals)
+	VALUES
+		( 'PF201', 1.0, 1.0, 1.0, 1.0 ),
+        ( 'PE3', 1.0, 1.0, 1.0, 1.0 );
+        
+SELECT * FROM Students;
+SELECT * FROM Teachers;
+SELECT * FROM Grades;
+
