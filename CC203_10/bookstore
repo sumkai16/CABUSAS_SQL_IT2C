@@ -1,0 +1,75 @@
+CREATE DATABASE cabusasaxcee_bookstore;
+USE cabusasaxcee_bookstore;
+
+CREATE TABLE Customers(
+	customer_id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(100) NOT NULL,
+	last_name VARCHAR(100) NOT NULL,
+    email TEXT
+    );
+
+CREATE TABLE Orders(
+		
+        order_id INT AUTO_INCREMENT PRIMARY KEY, 
+		order_date DATE,
+        customer_id INT,
+        amount DECIMAL(10,2) NOT NULL
+
+);
+
+CREATE TABLE Authors(
+	author_id INT AUTO_INCREMENT PRIMARY KEY,
+	first_name VARCHAR(100) NOT NULL,
+	last_name VARCHAR(100) NOT NULL
+
+);
+
+CREATE TABLE Books(
+	book_id INT AUTO_INCREMENT PRIMARY KEY,
+    title TEXT,
+    author_id INT,
+    price DECIMAL(10,2) NOT NULL,
+    FOREIGN KEY(author_id) REFERENCES Authors (author_id)
+);
+
+CREATE TABLE order_items(
+	order_item_id INT AUTO_INCREMENT PRIMARY KEY,
+    order_id INT,
+    book_id INT,
+    quantity INT,
+    FOREIGN KEY (order_id) REFERENCES Orders (order_id),
+	FOREIGN KEY (book_id) REFERENCES Books (book_id)
+);
+
+INSERT INTO Customers (first_name, last_name, email) 
+	VALUES
+			('John', 'Doe', 'john@example.com'),
+            ('Jane', 'Smith', 'jane@example.com'),
+            ('Alice', 'Johnson', 'alice@example.com');
+            
+ INSERT INTO Orders (order_date, customer_id, amount) 
+	VALUES
+			('2023-10-01', 1, 250.00),
+            ('2023-10-05', 2, 150.00),
+            ('2023-10-12', 1, 200.00),
+            ('2023-10-14', 3, 300.00);
+
+INSERT INTO Authors (first_name, last_name)
+	VALUES
+			('JK', 'Rowling'),
+            ('Sponge', 'Bob'),
+            ('Steven', 'Code');
+            
+ INSERT INTO Books (title, author_id, price) 
+	VALUES
+			('Book A', 1, 50.00),
+            ('Book B', 2, 70.00),
+            ('Book C', 3, 150.00);
+            
+INSERT INTO order_items(order_id, book_id, quantity)
+	VALUES
+			(1,1,2),
+            (1,2,1),
+            (2,3,1),
+            (3,1,1),
+            (4,2,3);
