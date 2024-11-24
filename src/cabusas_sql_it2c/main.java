@@ -41,7 +41,7 @@ import java.sql.*;
                 pst.setString(4,s_email);
                 pst.setString(5,s_status);
                 pst.executeUpdate();
-                System.out.println("Inserted Successfullyyeseysesadawdawdawdawdawyesyesyadadadaesy");
+                System.out.println("Inserted Successfuladaadadadadadlyyeseysesadawdawdawdawdawyesyesyadadadaesy");
         }catch(SQLException ex){
             System.out.println("Connection Error: "+ex.getMessage());
         }
